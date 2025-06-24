@@ -17,6 +17,14 @@ export class ClientsService {
     return this.prisma.client.create({ data });
   }
 
+  async createAndLinkToUser(data: CreateClientDto, userId: number) {
+    // Crea el cliente y lo vincula al usuario en UserClient
+    const client = await this.prisma.client.create({ data });
+    // @ts-ignore
+    await (this.prisma as any).userClient.create({ data: { userId, clientId: client.id } });
+    return client;
+  }
+
   async findAll(query: ClientQuery = {}) {
     const { page = 1, limit = 10, search } = query;
     const skip = (page - 1) * limit;
@@ -48,10 +56,27 @@ export class ClientsService {
     };
   }
 
+  async findAllByUserId(userId: number) {
+    // @ts-ignore
+    const userClients = await (this.prisma as any).userClient.findMany({
+      where: { userId },
+      include: { client: { include: { pets: true, appointments: true } } },
+    });
+    return userClients.map((uc: any) => uc.client);
+  }
+
   async findOne(id: number) {
     const client = await this.prisma.client.findUnique({ where: { id, deleted: false }, include: { pets: true, appointments: true } });
     if (!client) throw new NotFoundException('Cliente no encontrado');
     return client;
+  }
+
+  async isClientLinkedToUser(clientId: number, userId: number): Promise<boolean> {
+    // @ts-ignore
+    const link = await (this.prisma as any).userClient.findUnique({
+      where: { userId_clientId: { userId, clientId } },
+    });
+    return !!link;
   }
 
   async update(id: number, data: UpdateClientDto) {

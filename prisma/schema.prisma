@@ -53,6 +53,7 @@ model Client {
   deleted      Boolean       @default(false)
   createdAt    DateTime      @default(now())
   updatedAt    DateTime      @updatedAt
+  userClients  UserClient[]
 }
 
 model Pet {
@@ -175,10 +176,22 @@ model User {
   deleted   Boolean  @default(false)
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+  userClients UserClient[]
 }
 
 enum UserRole {
   ADMIN
   VET
   CLIENT
+}
+
+model UserClient {
+  id        Int    @id @default(autoincrement())
+  userId    Int
+  clientId  Int
+  user      User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  client    Client @relation(fields: [clientId], references: [id], onDelete: Cascade)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  @@unique([userId, clientId])
 }

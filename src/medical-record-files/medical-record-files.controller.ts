@@ -1,9 +1,11 @@
-import { Controller, Get, Post, Body, Param, Patch, Delete, ParseIntPipe } from '@nestjs/common';
+import { Controller, Get, Post, Body, Param, Patch, Delete, ParseIntPipe, UseGuards } from '@nestjs/common';
 import { MedicalRecordFilesService } from './medical-record-files.service';
 import { CreateMedicalRecordFileDto } from './dto/create-medical-record-file.dto';
 import { UpdateMedicalRecordFileDto } from './dto/update-medical-record-file.dto';
+import { JwtAuthGuard } from '../auth/jwt-auth.guard';
 
 @Controller('medical-record-files')
+@UseGuards(JwtAuthGuard)
 export class MedicalRecordFilesController {
   constructor(private readonly medicalRecordFilesService: MedicalRecordFilesService) {}
 
