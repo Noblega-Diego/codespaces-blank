@@ -4,7 +4,10 @@ import { CreatePetDto } from './dto/create-pet.dto';
 import { UpdatePetDto } from './dto/update-pet.dto';
 import { JwtAuthGuard } from '../auth/jwt-auth.guard';
 import { Request } from 'express';
+import { ApiTags, ApiBearerAuth } from '@nestjs/swagger';
 
+@ApiTags('pets')
+@ApiBearerAuth()
 @Controller('pets')
 @UseGuards(JwtAuthGuard)
 export class PetsController {

@@ -17,9 +17,11 @@
 - Actualizar servicios y controladores para que los usuarios CLIENT solo puedan acceder a sus propios datos de cliente y mascotas según la relación UserClient.
 - Restringir en el controlador de clientes que los usuarios CLIENT solo puedan acceder a sus propios datos.
 - Restringir en el controlador de mascotas que los usuarios CLIENT solo puedan ver, modificar o eliminar mascotas de clientes vinculados a ellos.
+- Documentación Swagger automática disponible en `/api`.
+- Decoradores Swagger en DTOs y controladores principales.
 
 ## ⬜️ Pendiente
 
 - Implementar sistema de roles y permisos más granular.
-- Manejo de archivos (Multer), seeds, Swagger, manejo global de errores/logs, CORS, Dockerfile, y documentación final.
+- Manejo de archivos (Multer), seeds, manejo global de errores/logs, CORS, Dockerfile, y documentación final.
 - Pruebas de integración para otros recursos y protección de endpoints según roles.

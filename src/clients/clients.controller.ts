@@ -4,7 +4,10 @@ import { CreateClientDto } from './dto/create-client.dto';
 import { UpdateClientDto } from './dto/update-client.dto';
 import { JwtAuthGuard } from '../auth/jwt-auth.guard';
 import { Request } from 'express';
+import { ApiTags, ApiBearerAuth } from '@nestjs/swagger';
 
+@ApiTags('clients')
+@ApiBearerAuth()
 @Controller('clients')
 @UseGuards(JwtAuthGuard)
 export class ClientsController {
