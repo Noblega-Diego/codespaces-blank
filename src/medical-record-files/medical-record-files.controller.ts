@@ -1,4 +1,34 @@
-import { Controller } from '@nestjs/common';
+import { Controller, Get, Post, Body, Param, Patch, Delete, ParseIntPipe } from '@nestjs/common';
+import { MedicalRecordFilesService } from './medical-record-files.service';
+import { CreateMedicalRecordFileDto } from './dto/create-medical-record-file.dto';
+import { UpdateMedicalRecordFileDto } from './dto/update-medical-record-file.dto';
 
 @Controller('medical-record-files')
-export class MedicalRecordFilesController {}
+export class MedicalRecordFilesController {
+  constructor(private readonly medicalRecordFilesService: MedicalRecordFilesService) {}
+
+  @Post()
+  create(@Body() dto: CreateMedicalRecordFileDto) {
+    return this.medicalRecordFilesService.create(dto);
+  }
+
+  @Get()
+  findAll() {
+    return this.medicalRecordFilesService.findAll();
+  }
+
+  @Get(':id')
+  findOne(@Param('id', ParseIntPipe) id: number) {
+    return this.medicalRecordFilesService.findOne(id);
+  }
+
+  @Patch(':id')
+  update(@Param('id', ParseIntPipe) id: number, @Body() dto: UpdateMedicalRecordFileDto) {
+    return this.medicalRecordFilesService.update(id, dto);
+  }
+
+  @Delete(':id')
+  remove(@Param('id', ParseIntPipe) id: number) {
+    return this.medicalRecordFilesService.remove(id);
+  }
+}

@@ -12,9 +12,11 @@ import { MedicalRecordFilesModule } from './medical-record-files/medical-record-
 import { AppointmentsModule } from './appointments/appointments.module';
 import { ServicesModule } from './services/services.module';
 import { CouponsModule } from './coupons/coupons.module';
+import { UsersModule } from './users/users.module';
+import { AuthModule } from './auth/auth.module';
 
 @Module({
-  imports: [PrismaModule, ProductsModule, CategoriesModule, ClientsModule, PetsModule, PetImagesModule, MedicalRecordsModule, MedicalRecordFilesModule, AppointmentsModule, ServicesModule, CouponsModule],
+  imports: [PrismaModule, ProductsModule, CategoriesModule, ClientsModule, PetsModule, PetImagesModule, MedicalRecordsModule, MedicalRecordFilesModule, AppointmentsModule, ServicesModule, CouponsModule, UsersModule, AuthModule],
   controllers: [AppController],
   providers: [AppService],
 })

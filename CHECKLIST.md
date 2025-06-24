@@ -19,19 +19,31 @@
   - Citas
   - Tipos de servicio
   - Cupones
+- Implementación de DTOs y validaciones (`class-validator`) para todos los recursos principales.
+- Integración de Prisma y endpoints CRUD completos para:
+  - Productos (con paginación y filtros)
+  - Categorías
+  - Clientes (con paginación y búsqueda)
+  - Mascotas
+  - Imágenes de mascotas
+  - Fichas médicas
+  - Archivos de fichas médicas
+  - Citas
+  - Tipos de servicio
+  - Cupones
+- Pruebas e2e funcionales y aisladas para productos y clientes (con datos únicos en cada ejecución).
+- Modelo y migración de usuarios de plataforma (User, UserRole).
+- Módulo, servicio y controlador de usuarios.
+- Módulo, servicio y controlador de autenticación (`auth`).
+- Registro y login JWT listos para pruebas.
 
 ## ⬜️ Pendiente
 
-- Integración de Prisma en los servicios de cada recurso.
-- Implementación de DTOs y validaciones (`class-validator`).
-- Endpoints CRUD completos y funcionales para cada recurso.
 - Manejo de imágenes y archivos (Multer).
-- Autenticación JWT (registro, login, protección de rutas).
 - Sistema de roles y permisos.
-- Baja lógica en todos los recursos.
 - Documentación Swagger.
 - Seeds de datos de ejemplo.
-- Pruebas de integración por recurso.
+- Pruebas de integración para otros recursos.
 - Manejo global de errores y logs.
 - Configuración de CORS y validación global.
 - Dockerfile para el backend.
